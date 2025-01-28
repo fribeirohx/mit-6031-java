@@ -53,7 +53,11 @@ public class TurtleSoup {
      * @return the integer number of sides
      */
     public static int calculatePolygonSidesFromAngle(double angle) {
-        throw new RuntimeException("implement me!");
+        if (angle < 1 || angle > 179) {
+            throw new IllegalArgumentException("Angle must be 0 < angle < 180");
+        }
+
+        return (int) Math.ceil(360 / (180 - angle));
     }
 
     /**
