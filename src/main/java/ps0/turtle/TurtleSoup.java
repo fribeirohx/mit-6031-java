@@ -33,7 +33,13 @@ public class TurtleSoup {
      * @return angle in degrees, where 0 <= angle < 360
      */
     public static double calculateRegularPolygonAngle(int sides) {
-        throw new RuntimeException("implement me!");
+        if (sides <= 2) {
+            throw new IllegalArgumentException("Sides must be > 2");
+        }
+
+        double interiorAnglesSum = (sides - 2) * 180;
+
+        return interiorAnglesSum / sides;
     }
 
     /**
