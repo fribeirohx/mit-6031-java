@@ -10,7 +10,7 @@
 ### Problems 5 - 11:
 - [x] Implementar o método `calculateRegularPolygonAngle`
 - [x] Implementar o método `calculatePolygonSidesFromAngle`
-- [ ] Implementar o método `drawRegularPolygon`
+- [x] Implementar o método `drawRegularPolygon`
 - [ ] Implementar o método `calculateHeadingToPoint`
 - [ ] Implementar o método `calculateHeadings`
 - [ ] Implementar o método `drawPersonalArt`
