@@ -6,7 +6,6 @@ package ps0.turtle;
 import java.util.List;
 
 public class TurtleSoup {
-
     /**
      * Draw a square.
      *
@@ -99,7 +98,16 @@ public class TurtleSoup {
      */
     public static double calculateHeadingToPoint(double currentHeading, int currentX, int currentY,
                                                  int targetX, int targetY) {
-        throw new RuntimeException("implement me!");
+        double deltaX = targetX - currentX;
+        double deltaY = targetY - currentY;
+        double desiredHeading = Math.atan2(deltaY, deltaX) + (2 * Math.PI);
+        double shortAnglePath = (Math.toDegrees(desiredHeading) - (90 - currentHeading)) % 360;
+
+        if (shortAnglePath == 0.0) {
+            shortAnglePath = 360.0;
+        }
+
+        return 360 - shortAnglePath;
     }
 
     /**
@@ -142,9 +150,7 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
-        drawRegularPolygon(turtle, 3, 40);
-
         // draw the window
-        turtle.draw();
+//        turtle.draw();
     }
 }
