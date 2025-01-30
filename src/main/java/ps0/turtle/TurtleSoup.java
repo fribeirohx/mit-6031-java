@@ -100,14 +100,12 @@ public class TurtleSoup {
                                                  int targetX, int targetY) {
         double deltaX = targetX - currentX;
         double deltaY = targetY - currentY;
-        double desiredHeading = Math.atan2(deltaY, deltaX) + (2 * Math.PI);
-        double shortAnglePath = (Math.toDegrees(desiredHeading) - (90 - currentHeading)) % 360;
 
-        if (shortAnglePath == 0.0) {
-            shortAnglePath = 360.0;
-        }
+        double atan2NorthAngleRadian = Math.atan2(deltaX, deltaY) + (2 * Math.PI);
+        double atan2NorthAngleDegree = Math.toDegrees(atan2NorthAngleRadian);
+        double turnAngle = ((atan2NorthAngleDegree - currentHeading) + 360) % 360; // 0 <= angle < 360
 
-        return 360 - shortAnglePath;
+        return turnAngle;
     }
 
     /**
