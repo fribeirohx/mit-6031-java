@@ -3,6 +3,8 @@
  */
 package ps0.turtle;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TurtleSoup {
@@ -123,7 +125,26 @@ public class TurtleSoup {
      * otherwise of size (# of points) - 1
      */
     public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) {
-        throw new RuntimeException("implement me!");
+        int currentX = xCoords.get(0);
+        int currentY = yCoords.get(0);
+        double currentHeading = calculateHeadingToPoint(0, 0, 0, currentX, currentY);
+        double turnAngle;
+
+        List<Double> turnList = new ArrayList<>();
+
+        for (int i = 1; i < xCoords.toArray().length; i++) {
+
+            turnAngle = calculateHeadingToPoint(currentHeading, currentX, currentY, xCoords.get(i), yCoords.get(i));
+
+            currentHeading += turnAngle;
+
+            currentX = xCoords.get(i);
+            currentY = yCoords.get(i);
+
+            turnList.add(turnAngle);
+        }
+
+        return turnList;
     }
 
     /**
@@ -147,6 +168,10 @@ public class TurtleSoup {
      */
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
+
+        List<Integer> x = List.of(0, 0, 1, 1);
+        List<Integer> y = List.of(1, 0, 0, 1);
+        calculateHeadings(x, y);
 
         // draw the window
 //        turtle.draw();
