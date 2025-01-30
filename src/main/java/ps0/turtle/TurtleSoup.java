@@ -156,7 +156,32 @@ public class TurtleSoup {
      * @param turtle the turtle context
      */
     public static void drawPersonalArt(Turtle turtle) {
-        throw new RuntimeException("implement me!");
+        List<Integer> xCoords = new ArrayList<>();
+        List<Integer> yCoords = new ArrayList<>();
+        List<Integer> starAngles = new ArrayList<>(List.of(0, 144, 288, 72, 216, 0));
+        List<Double> headingList;
+
+        for (int i : starAngles) {
+
+            double angleToRadian = Math.toRadians(i);
+
+            double x = Math.sin(angleToRadian) * 100;
+            double y = Math.cos(angleToRadian) * 100;
+
+            xCoords.add((int) Math.round(x));
+            yCoords.add((int) Math.round(y));
+        }
+
+        System.out.println(xCoords);
+        System.out.println(yCoords);
+        headingList = calculateHeadings(xCoords, yCoords);
+
+        System.out.println(headingList);
+
+        for (double degree : headingList) {
+            turtle.turn(degree);
+            turtle.forward(200);
+        }
     }
 
     /**
@@ -169,11 +194,9 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
-        List<Integer> x = List.of(0, 0, 1, 1);
-        List<Integer> y = List.of(1, 0, 0, 1);
-        calculateHeadings(x, y);
+        drawPersonalArt(turtle); //star
 
-        // draw the window
-//        turtle.draw();
+        //draw the window
+        turtle.draw();
     }
 }
